@@ -31,6 +31,7 @@ const CustomForm = ({ control, name, label, placeholder } : CustomFormProps) => 
                 <Input
                   placeholder={`${placeholder}`}
                   className="input-class"
+                  type={name === "password" ? "password" : "text"}
                   {...field}
                 />
               </FormControl>
