@@ -6,11 +6,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Control } from "react-hook-form";
+import { Control, FieldPath } from "react-hook-form";
+import { z } from "zod";
+import { authFormSchema } from "@/lib/utils";
 
 interface CustomFormProps {
-  control: Control;
-  name: string;
+  control: Control<z.infer<typeof authFormSchema>>;
+  name: FieldPath<z.infer<typeof authFormSchema>>;
   label: string;
   placeholder: string;
 }
