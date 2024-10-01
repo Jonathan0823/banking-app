@@ -12,7 +12,8 @@ import { Loader2 } from "lucide-react";
 import { authFormSchema } from "@/lib/utils";
 import SignUp from "@/app/(auth)/sign-up/page";
 import SignIn from "@/app/(auth)/sign-in/page";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState<string>("");
