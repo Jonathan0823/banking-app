@@ -10,16 +10,16 @@ import { Form } from "@/components/ui/form";
 import CustomForm from "./CustomForm";
 import { Loader2 } from "lucide-react";
 import { authFormSchema } from "@/lib/utils";
-import SignUp from "@/app/(auth)/sign-up/page";
-import SignIn from "@/app/(auth)/sign-in/page";
 import { useRouter } from "next/navigation";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState<string>("");
   const [isLoading, setIsloading] = useState<boolean>(false);
-
   const router = useRouter();
+
+
 
   const formSchema = authFormSchema(type);
 
@@ -37,19 +37,20 @@ const AuthForm = ({ type }: { type: string }) => {
     try {
       // Sign up with Appwrite & create plain link token
       if (type === "sign-up") {
-        // const newUser = await SignUp(values);
-        // setUser(newUser);
+        const newUser = await signUp(values);
+
+        setUser(newUser);
       }
 
       if (type === "sign-in") {
-        //  const response = await SignIn({
-        //     email: values.email,
-        //     password: values.password,
-        //  });
+         const response = await signIn({
+            email: values.email,
+            password: values.password,
+         });
 
-        //  if(response){
-        //     router.push("/");
-        //  }
+         if(response){
+            router.push("/");
+         }
       }
     } catch (error) {
       console.error(error);
